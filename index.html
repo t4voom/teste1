@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aynebrenda · diário de frente pro mar</title>
+  <meta name="description" content="Um diário de fotos da Aynebrenda: mar verde-água, vento no cabelo, barco e girassol.">
+  <meta name="theme-color" content="#bfe8f2">
+  <meta property="og:title" content="Aynebrenda · diário de frente pro mar">
+  <meta property="og:description" content="Sal no cabelo, vento no rosto e o mar sempre no horizonte.">
+  <link rel="icon" href="assets/tartaruga.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Nunito:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+
+  <!-- Desenhos reutilizados (tartaruga da tatuagem e barquinho) -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="tartaruga" viewBox="0 0 100 100">
+      <g fill="currentColor" fill-opacity=".18" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+        <ellipse cx="50" cy="17" rx="8" ry="10"/>
+        <path d="M31 40 Q10 26 5 37 Q13 47 33 51 Z"/>
+        <path d="M69 40 Q90 26 95 37 Q87 47 67 51 Z"/>
+        <path d="M35 70 Q20 79 22 89 Q33 85 41 75 Z"/>
+        <path d="M65 70 Q80 79 78 89 Q67 85 59 75 Z"/>
+        <path d="M46 80 Q50 94 54 80 Z"/>
+        <ellipse cx="50" cy="52" rx="22" ry="28"/>
+        <polygon points="50,39 58,45 58,57 50,63 42,57 42,45" fill-opacity="0"/>
+        <path d="M50 39 V24 M58 45 L70 37 M58 57 L71 66 M50 63 V80 M42 57 L29 66 M42 45 L30 37" fill="none"/>
+      </g>
+    </symbol>
+    <symbol id="barco" viewBox="0 0 64 48">
+      <path d="M28 20 V6" stroke="#1d3540" stroke-width="2" stroke-linecap="round"/>
+      <path d="M28 6 L39 9.5 L28 13 Z" fill="#f6b92b"/>
+      <rect x="17" y="19" width="22" height="12" rx="3" fill="#fffdf6" stroke="#1d3540" stroke-width="2"/>
+      <rect x="21" y="22.5" width="5" height="4" rx="1" fill="#5cc2bb"/>
+      <rect x="29.5" y="22.5" width="5" height="4" rx="1" fill="#5cc2bb"/>
+      <path d="M5 30 H59 L51 43 H14 Z" fill="#fffdf6" stroke="#1d3540" stroke-width="2" stroke-linejoin="round"/>
+      <path d="M10 36 H55" stroke="#2f9aa0" stroke-width="2.5"/>
+    </symbol>
+  </svg>
+
+  <!-- ============ CÉU ============ -->
+  <header class="hero" id="topo">
+    <div class="hero__sol" aria-hidden="true"></div>
+    <div class="nuvens" aria-hidden="true">
+      <span class="nuvem nuvem--1"></span>
+      <span class="nuvem nuvem--2"></span>
+      <span class="nuvem nuvem--3"></span>
+    </div>
+
+    <div class="hero__conteudo">
+      <div class="hero__texto">
+        <p class="hero__pre manuscrito">diário de bordo de</p>
+        <h1 class="hero__nome">Aynebrenda</h1>
+        <p class="hero__sub">Sal no cabelo, vento no rosto e o mar sempre no horizonte.</p>
+        <a class="botao" href="#diario">abrir o diário
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M12 4v16m0 0-6-6m6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+
+      <div class="hero__fotos">
+        <button class="pilha" type="button" aria-label="Pilha de fotos da Aynebrenda. Toque para passar para a próxima.">
+          <div class="polaroid" style="--r:3deg; --pos:center 70%">
+            <span class="fita" aria-hidden="true"></span>
+            <picture>
+              <source type="image/webp" srcset="images/ceu-azul-p.webp 600w, images/ceu-azul.webp 1116w" sizes="300px">
+              <img src="images/ceu-azul.jpg" width="1116" height="1600" alt="Aynebrenda de costas olhando o mar verde-água sob céu azul">
+            </picture>
+            <span class="polaroid__legenda">de frente pro mar</span>
+          </div>
+          <div class="polaroid" style="--r:-4deg">
+            <span class="fita" aria-hidden="true"></span>
+            <picture>
+              <source type="image/webp" srcset="images/timao-p.webp 600w, images/timao.webp 1200w" sizes="300px">
+              <img src="images/timao.jpg" width="1200" height="1600" alt="Aynebrenda no timão de um barco">
+            </picture>
+            <span class="polaroid__legenda">capitã por um dia</span>
+          </div>
+          <div class="polaroid" style="--r:6deg; --pos:center 62%">
+            <span class="fita" aria-hidden="true"></span>
+            <picture>
+              <source type="image/webp" srcset="images/amigas-p.webp 600w, images/amigas.webp 900w" sizes="300px">
+              <img src="images/amigas.jpg" width="900" height="1600" alt="Aynebrenda e uma amiga sentadas de costas na beirada de um barco">
+            </picture>
+            <span class="polaroid__legenda">a bordo com a dupla</span>
+          </div>
+          <div class="polaroid" style="--r:-2deg">
+            <span class="fita" aria-hidden="true"></span>
+            <picture>
+              <source type="image/webp" srcset="images/girassol-p.webp 600w, images/girassol.webp 1200w" sizes="300px">
+              <img src="images/girassol.jpg" width="1200" height="1600" alt="Buquê com girassol, rosas e alstroemérias">
+            </picture>
+            <span class="polaroid__legenda">flores pra ela</span>
+          </div>
+        </button>
+        <p class="pilha__dica manuscrito" aria-hidden="true">toque pra embaralhar ↻</p>
+      </div>
+    </div>
+
+    <div class="ondas" aria-hidden="true">
+      <svg class="onda onda--1" viewBox="0 0 2880 100" preserveAspectRatio="none"><path d="M0 50 Q180 10 360 50 T720 50 T1080 50 T1440 50 T1800 50 T2160 50 T2520 50 T2880 50 V100 H0Z"/></svg>
+      <svg class="onda onda--2" viewBox="0 0 2880 100" preserveAspectRatio="none"><path d="M0 50 Q180 10 360 50 T720 50 T1080 50 T1440 50 T1800 50 T2160 50 T2520 50 T2880 50 V100 H0Z"/></svg>
+      <svg class="onda onda--3" viewBox="0 0 2880 100" preserveAspectRatio="none"><path d="M0 50 Q180 10 360 50 T720 50 T1080 50 T1440 50 T1800 50 T2160 50 T2520 50 T2880 50 V100 H0Z"/></svg>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============ SUPERFÍCIE: bilhete ============ -->
+    <section class="bilhete-sec" id="sobre" aria-label="Bilhete">
+      <div class="bolhas" data-qtd="8" aria-hidden="true"></div>
+      <div class="bilhete revelar">
+        <span class="fita" aria-hidden="true"></span>
+        <p>Oi, Aynebrenda!</p>
+        <p>Fiz esse cantinho da internet só pra você. Aqui ficam guardados os dias de sol, o barco, o vento bagunçando o cabelo e aquele mar verde-água que parece de mentira.</p>
+        <p class="bilhete__assinatura">com carinho ♡</p>
+        <svg class="bilhete__tartaruga" aria-hidden="true"><use href="#tartaruga"/></svg>
+      </div>
+    </section>
+
+    <!-- ============ MAR: diário ============ -->
+    <section class="diario" id="diario" aria-labelledby="titulo-diario">
+      <div class="bolhas" data-qtd="18" aria-hidden="true"></div>
+      <h2 class="titulo-sec" id="titulo-diario"><span class="manuscrito">quatro páginas do</span> Diário de bordo</h2>
+
+      <div class="trilha">
+        <svg class="rota" aria-hidden="true">
+          <path class="rota__tracejada"/>
+          <path class="rota__feita"/>
+        </svg>
+        <div class="barquinho" aria-hidden="true"><svg><use href="#barco"/></svg></div>
+
+        <article class="entrada">
+          <div class="polaroid-wrap revelar">
+            <button class="polaroid" type="button" data-foto="0" style="--r:-3deg; --pos:center 62%" aria-label="Ampliar foto: a bordo com a dupla">
+              <span class="fita" aria-hidden="true"></span>
+              <picture>
+                <source type="image/webp" srcset="images/amigas-p.webp 600w, images/amigas.webp 900w" sizes="(max-width: 760px) 80vw, 340px">
+                <img src="images/amigas.jpg" width="900" height="1600" loading="lazy" decoding="async" alt="Aynebrenda e uma amiga sentadas de costas na beirada de um barco, olhando lanchas ancoradas e um morro verde">
+              </picture>
+              <span class="polaroid__legenda">a bordo com a dupla</span>
+            </button>
+          </div>
+          <div class="entrada__nota revelar">
+            <span class="entrada__num">01</span>
+            <h3>Melhor companhia</h3>
+            <p>Barco pra todo lado, morro verde lá no fundo e alguém do lado pra dividir a vista.</p>
+          </div>
+        </article>
+
+        <article class="entrada">
+          <div class="polaroid-wrap revelar">
+            <button class="polaroid" type="button" data-foto="1" style="--r:2.5deg" aria-label="Ampliar foto: capitã por um dia">
+              <span class="fita" aria-hidden="true"></span>
+              <picture>
+                <source type="image/webp" srcset="images/timao-p.webp 600w, images/timao.webp 1200w" sizes="(max-width: 760px) 80vw, 340px">
+                <img src="images/timao.jpg" width="1200" height="1600" loading="lazy" decoding="async" alt="Aynebrenda de costas, de casaco de renda branco, no timão de um barco com mata verde ao fundo">
+              </picture>
+              <span class="polaroid__legenda">capitã por um dia</span>
+            </button>
+          </div>
+          <div class="entrada__nota revelar">
+            <span class="entrada__num">02</span>
+            <h3>No comando</h3>
+            <p>Cabelo ao vento, mão no timão e a água verde-esmeralda logo ali na frente.</p>
+          </div>
+        </article>
+
+        <article class="entrada">
+          <div class="polaroid-wrap revelar">
+            <button class="polaroid" type="button" data-foto="2" style="--r:-2deg; --pos:center 70%" aria-label="Ampliar foto: de frente pro mar">
+              <span class="fita" aria-hidden="true"></span>
+              <picture>
+                <source type="image/webp" srcset="images/ceu-azul-p.webp 600w, images/ceu-azul.webp 1116w" sizes="(max-width: 760px) 80vw, 340px">
+                <img src="images/ceu-azul.jpg" width="1116" height="1600" loading="lazy" decoding="async" alt="Aynebrenda de costas, com tatuagem de tartaruga no braço, olhando o mar verde-água sob céu azul">
+              </picture>
+              <span class="polaroid__legenda">de frente pro mar</span>
+            </button>
+          </div>
+          <div class="entrada__nota revelar">
+            <span class="entrada__num">03</span>
+            <h3>Céu azul, mar verde-água</h3>
+            <p>Tem dia em que o horizonte é o melhor lugar pra olhar. A tartaruga no braço concorda.</p>
+          </div>
+        </article>
+
+        <article class="entrada">
+          <div class="polaroid-wrap revelar">
+            <button class="polaroid" type="button" data-foto="3" style="--r:3.5deg" aria-label="Ampliar foto: flores pra ela">
+              <span class="fita" aria-hidden="true"></span>
+              <picture>
+                <source type="image/webp" srcset="images/girassol-p.webp 600w, images/girassol.webp 1200w" sizes="(max-width: 760px) 80vw, 340px">
+                <img src="images/girassol.jpg" width="1200" height="1600" loading="lazy" decoding="async" alt="Buquê com girassol, rosas pink, alstroemérias e eucalipto embrulhado em papel kraft">
+              </picture>
+              <span class="polaroid__legenda">flores pra ela</span>
+            </button>
+          </div>
+          <div class="entrada__nota revelar">
+            <span class="entrada__num">04</span>
+            <h3>Um girassol pra fechar</h3>
+            <p>Porque todo dia bonito merece terminar com flores.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FUNDO DO MAR ============ -->
+  <footer class="fundo">
+    <div class="bolhas" data-qtd="22" aria-hidden="true"></div>
+    <div class="tartaruga-nadando" aria-hidden="true"><svg><use href="#tartaruga"/></svg></div>
+    <p class="fundo__frase manuscrito">continua no próximo mergulho…</p>
+    <a href="#topo" class="botao botao--claro">voltar à superfície
+      <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M12 20V4m0 0-6 6m6-6 6 6" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+    <p class="fundo__credito">feito com carinho pra Aynebrenda · 2026</p>
+  </footer>
+
+  <!-- ============ FOTO AMPLIADA ============ -->
+  <dialog class="lightbox" aria-label="Foto ampliada">
+    <button class="lightbox__btn lightbox__fechar" type="button" aria-label="Fechar">✕</button>
+    <button class="lightbox__btn lightbox__nav lightbox__nav--ant" type="button" aria-label="Foto anterior">‹</button>
+    <figure class="lightbox__polaroid">
+      <img alt="">
+      <figcaption class="manuscrito"></figcaption>
+    </figure>
+    <button class="lightbox__btn lightbox__nav lightbox__nav--prox" type="button" aria-label="Próxima foto">›</button>
+    <p class="lightbox__contador" aria-live="polite"></p>
+  </dialog>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

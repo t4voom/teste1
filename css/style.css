@@ -1,0 +1,598 @@
+/* =========================================================
+   Aynebrenda · diário de frente pro mar
+   Mistura de diário (polaroid, letra de mão, fita) + oceano
+   ========================================================= */
+
+:root {
+  --ceu-topo: #bfe8f2;
+  --ceu-base: #e6f6f1;
+  --mar-1: #5cc2bb;
+  --mar-2: #2f9aa0;
+  --mar-3: #17677a;
+  --mar-4: #0b3a4a;
+  --abismo: #051c26;
+
+  --papel: #fffdf6;
+  --papel-linha: #d3e6ec;
+  --tinta: #1d3540;
+  --tinta-suave: #4b6470;
+  --sol: #f6b92b;
+  --sol-escuro: #c98f12;
+  --rosa: #ec9bb6;
+  --fita: rgba(246, 214, 140, .78);
+
+  --sombra: 0 14px 30px rgba(5, 36, 48, .28), 0 2px 6px rgba(5, 36, 48, .18);
+
+  --f-titulo: 'Fraunces', Georgia, serif;
+  --f-mao: 'Caveat', 'Segoe Print', 'Comic Sans MS', cursive;
+  --f-texto: 'Nunito', system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: var(--f-texto);
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: var(--tinta);
+  background: var(--abismo);
+  overflow-x: hidden;
+}
+
+img, svg { display: block; max-width: 100%; }
+
+.manuscrito { font-family: var(--f-mao); }
+
+:focus-visible { outline: 3px solid var(--sol); outline-offset: 4px; }
+
+/* ---------- Botão ---------- */
+.botao {
+  display: inline-flex;
+  align-items: center;
+  gap: .4em;
+  font-family: var(--f-mao);
+  font-size: 1.55rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--tinta);
+  background: var(--sol);
+  padding: .45em 1.1em .5em;
+  border-radius: 999px;
+  text-decoration: none;
+  box-shadow: 0 4px 0 var(--sol-escuro);
+  transition: transform .2s, box-shadow .2s;
+}
+.botao:hover { transform: translateY(-2px); box-shadow: 0 6px 0 var(--sol-escuro); }
+.botao:active { transform: translateY(2px); box-shadow: 0 2px 0 var(--sol-escuro); }
+.botao--claro { background: var(--papel); box-shadow: 0 4px 0 #9fc6cf; }
+.botao--claro:hover { box-shadow: 0 6px 0 #9fc6cf; }
+
+/* ---------- Polaroid ---------- */
+.polaroid {
+  position: relative;
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 12px 12px 0;
+  border: 0;
+  font: inherit;
+  color: var(--tinta);
+  background: var(--papel);
+  box-shadow: var(--sombra);
+  transform: rotate(var(--r, 0deg));
+  transition: transform .45s cubic-bezier(.2, .8, .2, 1), box-shadow .45s;
+}
+button.polaroid { cursor: zoom-in; }
+button.polaroid:hover,
+button.polaroid:focus-visible {
+  transform: rotate(0deg) scale(1.03);
+  box-shadow: 0 22px 40px rgba(5, 36, 48, .35), 0 4px 10px rgba(5, 36, 48, .2);
+}
+.polaroid img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: var(--pos, center);
+  background: #cfe7ea;
+}
+.polaroid__legenda {
+  display: block;
+  padding: 10px 4px 14px;
+  font-family: var(--f-mao);
+  font-size: 1.6rem;
+  line-height: 1.1;
+  text-align: center;
+}
+
+.fita {
+  position: absolute;
+  z-index: 2;
+  top: -13px;
+  left: 50%;
+  width: 92px;
+  height: 28px;
+  background: var(--fita);
+  transform: translateX(-50%) rotate(-4deg);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .12);
+  clip-path: polygon(0 8%, 6% 0, 12% 10%, 18% 0, 25% 8%, 100% 0, 94% 50%, 100% 100%, 0 100%, 5% 50%);
+}
+
+/* =========================================================
+   CÉU (abertura)
+   ========================================================= */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  padding: 64px 16px 170px;
+  overflow: hidden;
+  background: linear-gradient(180deg, var(--ceu-topo) 0%, #d6f1f4 55%, var(--ceu-base) 100%);
+}
+
+.hero__sol {
+  position: absolute;
+  top: 6%;
+  right: 10%;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fff1bf 0, #ffd66e 40%, rgba(255, 214, 110, 0) 70%);
+  animation: pulsar 7s ease-in-out infinite;
+}
+@keyframes pulsar { 50% { transform: scale(1.12); opacity: .85; } }
+
+.nuvens { position: absolute; inset: 0; pointer-events: none; }
+.nuvem {
+  position: absolute;
+  left: 0;
+  height: 46px;
+  border-radius: 999px;
+  background: #fff;
+  opacity: .75;
+  filter: blur(6px);
+  animation: derivar linear infinite;
+}
+.nuvem--1 { top: 12%; width: 220px; animation-duration: 75s; animation-delay: -20s; }
+.nuvem--2 { top: 26%; width: 150px; height: 34px; animation-duration: 95s; animation-delay: -60s; opacity: .6; }
+.nuvem--3 { top: 6%;  width: 300px; height: 56px; animation-duration: 120s; animation-delay: -95s; opacity: .55; }
+@keyframes derivar {
+  from { transform: translateX(-320px); }
+  to   { transform: translateX(calc(100vw + 40px)); }
+}
+
+.hero__conteudo {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.15fr .85fr;
+  gap: 48px;
+  align-items: center;
+}
+
+.hero__pre {
+  display: inline-block;
+  margin: 0;
+  font-size: clamp(1.6rem, 4vw, 2.2rem);
+  color: var(--mar-3);
+  transform: rotate(-3deg);
+}
+.hero__nome {
+  margin: .05em 0 .25em;
+  font-family: var(--f-titulo);
+  font-weight: 600;
+  font-size: clamp(3rem, 12.5vw, 7.2rem);
+  line-height: .95;
+  letter-spacing: -.02em;
+  color: var(--mar-4);
+  background: linear-gradient(100deg, var(--mar-4) 0%, var(--mar-3) 55%, var(--mar-2) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.hero__sub {
+  max-width: 30ch;
+  margin: 0 0 28px;
+  font-size: 1.2rem;
+  color: var(--tinta-suave);
+}
+
+.hero__fotos { display: flex; flex-direction: column; align-items: center; }
+
+.pilha {
+  position: relative;
+  width: min(290px, 70vw);
+  aspect-ratio: 290 / 410;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.pilha .polaroid {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: calc(10 - var(--i, 0));
+  transform: translate(calc(var(--i, 0) * 6px), calc(var(--i, 0) * -4px)) rotate(var(--r));
+  transition: transform .5s cubic-bezier(.2, .8, .2, 1);
+  pointer-events: none;
+}
+.pilha .polaroid.saindo { transform: translate(105%, -8%) rotate(16deg); }
+.pilha .polaroid .fita { transition: opacity .3s; }
+.pilha .polaroid:not(.topo) .fita { opacity: 0; }
+.pilha .polaroid.topo { box-shadow: 0 22px 40px rgba(5, 36, 48, .32), 0 3px 8px rgba(5, 36, 48, .2); }
+
+.pilha__dica {
+  margin: 22px 0 0;
+  font-size: 1.4rem;
+  color: var(--mar-3);
+  transform: rotate(-2deg);
+}
+
+/* Ondas */
+.ondas {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 150px;
+  pointer-events: none;
+  z-index: 1;
+}
+.onda {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 200%;
+  max-width: none;
+  height: 100%;
+  animation: onda linear infinite;
+}
+.onda--1 { fill: #a9e2dd; opacity: .7; bottom: 34px; animation-duration: 22s; }
+.onda--2 { fill: #82d2cb; opacity: .85; bottom: 16px; height: 120px; animation-duration: 15s; animation-direction: reverse; }
+.onda--3 { fill: var(--mar-1); height: 90px; animation-duration: 10s; }
+@keyframes onda { to { transform: translateX(-50%); } }
+
+/* =========================================================
+   SUPERFÍCIE (bilhete)
+   ========================================================= */
+.bilhete-sec {
+  position: relative;
+  overflow: hidden;
+  padding: 48px 16px 110px;
+  background: linear-gradient(180deg, var(--mar-1) 0%, var(--mar-2) 100%);
+}
+
+.bilhete {
+  position: relative;
+  z-index: 1;
+  max-width: 580px;
+  margin: 0 auto;
+  padding: 40px 34px 30px 64px;
+  font-family: var(--f-mao);
+  font-size: 1.7rem;
+  line-height: 36px;
+  background-color: var(--papel);
+  background-image:
+    linear-gradient(90deg, transparent 44px, #f2b5c3 44px, #f2b5c3 46px, transparent 46px),
+    repeating-linear-gradient(180deg, transparent 0 35px, var(--papel-linha) 35px 36px);
+  background-position: 0 0, 0 40px;
+  box-shadow: var(--sombra);
+  transform: rotate(-1.5deg);
+}
+.bilhete p { margin: 0 0 36px; }
+.bilhete p:first-of-type { font-weight: 700; color: var(--mar-3); }
+.bilhete__assinatura { margin-bottom: 0 !important; color: #d0607f; text-align: right; padding-right: 70px; }
+.bilhete__tartaruga {
+  position: absolute;
+  right: 16px;
+  bottom: 12px;
+  width: 64px;
+  height: 64px;
+  color: var(--mar-3);
+  transform: rotate(25deg);
+}
+
+/* =========================================================
+   MAR (diário)
+   ========================================================= */
+.diario {
+  position: relative;
+  overflow: hidden;
+  padding: 24px 16px 140px;
+  color: #fff;
+  background: linear-gradient(180deg, var(--mar-2) 0%, var(--mar-3) 55%, var(--mar-4) 100%);
+}
+
+.titulo-sec {
+  position: relative;
+  z-index: 1;
+  margin: 0 0 64px;
+  font-family: var(--f-titulo);
+  font-weight: 600;
+  font-size: clamp(2.4rem, 7vw, 3.8rem);
+  line-height: 1.05;
+  text-align: center;
+}
+.titulo-sec .manuscrito {
+  display: block;
+  font-weight: 500;
+  font-size: .55em;
+  color: var(--sol);
+  transform: rotate(-2deg);
+}
+
+.trilha {
+  position: relative;
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+.rota {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+.rota path { fill: none; stroke-linecap: round; }
+.rota__tracejada { stroke: rgba(255, 255, 255, .45); stroke-width: 3; stroke-dasharray: 1 12; }
+.rota__feita { stroke: var(--sol); stroke-width: 3.5; }
+
+.barquinho {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 3;
+  width: 56px;
+  pointer-events: none;
+  will-change: transform;
+}
+.barquinho svg {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 64 / 48;
+  filter: drop-shadow(0 4px 4px rgba(0, 0, 0, .25));
+  animation: boiar 2.6s ease-in-out infinite;
+}
+@keyframes boiar {
+  0%, 100% { transform: translateY(0) rotate(-3deg); }
+  50% { transform: translateY(-4px) rotate(3deg); }
+}
+
+.entrada {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 140px;
+  align-items: center;
+  padding: 36px 0;
+}
+.polaroid-wrap { width: 100%; max-width: 340px; justify-self: end; }
+.entrada__nota { max-width: 340px; justify-self: start; }
+.entrada:nth-of-type(even) .polaroid-wrap { order: 2; justify-self: start; }
+.entrada:nth-of-type(even) .entrada__nota { order: 1; justify-self: end; text-align: right; }
+
+.entrada__num {
+  display: block;
+  font-family: var(--f-mao);
+  font-size: 2.6rem;
+  line-height: 1;
+  color: var(--sol);
+}
+.entrada__nota h3 {
+  margin: .1em 0 .3em;
+  font-family: var(--f-titulo);
+  font-weight: 600;
+  font-size: clamp(1.7rem, 3.4vw, 2.2rem);
+  line-height: 1.1;
+}
+.entrada__nota p { margin: 0; font-size: 1.1rem; color: rgba(255, 255, 255, .86); }
+
+/* Aparecer ao rolar */
+.js .revelar {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity .8s ease, transform .9s cubic-bezier(.2, .8, .2, 1);
+}
+.js .revelar.visivel { opacity: 1; transform: none; }
+.js .bilhete.revelar { transform: translateY(40px) rotate(-1.5deg); }
+.js .bilhete.revelar.visivel { transform: rotate(-1.5deg); }
+
+/* =========================================================
+   FUNDO DO MAR (rodapé)
+   ========================================================= */
+.fundo {
+  position: relative;
+  overflow: hidden;
+  min-height: 75vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 22px;
+  padding: 140px 16px 40px;
+  text-align: center;
+  color: #cdebf0;
+  background: linear-gradient(180deg, var(--mar-4) 0%, var(--abismo) 100%);
+}
+.fundo::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(105deg, rgba(255, 255, 255, .05) 0 50px, transparent 50px 150px);
+  -webkit-mask-image: linear-gradient(180deg, #000 0%, transparent 65%);
+  mask-image: linear-gradient(180deg, #000 0%, transparent 65%);
+  pointer-events: none;
+}
+
+.tartaruga-nadando {
+  position: absolute;
+  top: 22%;
+  left: 0;
+  width: 110px;
+  color: #8fdcd0;
+  animation: nadar 28s linear infinite;
+}
+.tartaruga-nadando svg {
+  width: 110px;
+  height: 110px;
+  transform: rotate(90deg);
+  animation: balancar 3.2s ease-in-out infinite;
+}
+@keyframes nadar {
+  from { transform: translateX(-150px); }
+  to   { transform: translateX(calc(100vw + 40px)); }
+}
+@keyframes balancar {
+  0%, 100% { transform: rotate(90deg) translateX(0); }
+  50% { transform: rotate(84deg) translateX(-10px); }
+}
+
+.fundo__frase { position: relative; margin: 0; font-size: clamp(2rem, 6vw, 2.8rem); color: #fff; }
+.fundo__credito { position: relative; margin: 24px 0 0; font-size: .95rem; opacity: .7; }
+
+/* Bolhas */
+.bolhas { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+.bolha {
+  position: absolute;
+  bottom: -24px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 255, 255, .5);
+  background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, .6), rgba(255, 255, 255, .05) 60%);
+  animation: subir linear infinite;
+}
+@keyframes subir {
+  0%   { transform: translate(0, 0); opacity: 0; }
+  10%  { opacity: 1; }
+  85%  { opacity: .8; }
+  100% { transform: translate(var(--dx, 20px), -110vh); opacity: 0; }
+}
+
+/* =========================================================
+   FOTO AMPLIADA
+   ========================================================= */
+.lightbox {
+  width: 100vw;
+  max-width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  max-height: 100dvh;
+  margin: 0;
+  padding: 16px;
+  border: 0;
+  background: transparent;
+  overflow: hidden;
+}
+.lightbox[open] { display: flex; align-items: center; justify-content: center; }
+.lightbox::backdrop { background: rgba(4, 26, 35, .9); -webkit-backdrop-filter: blur(5px); backdrop-filter: blur(5px); }
+.lightbox[open] .lightbox__polaroid { animation: cair .45s cubic-bezier(.2, .8, .2, 1); }
+@keyframes cair { from { opacity: 0; transform: translateY(30px) rotate(-6deg) scale(.95); } }
+
+.lightbox__polaroid {
+  margin: 0;
+  padding: 12px 12px 0;
+  background: var(--papel);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, .45);
+  transform: rotate(-1deg);
+}
+.lightbox__polaroid img {
+  width: auto;
+  max-width: min(84vw, 560px);
+  max-height: calc(100dvh - 170px);
+  margin: 0 auto;
+  object-fit: contain;
+}
+.lightbox__polaroid figcaption {
+  padding: 8px 4px 12px;
+  font-size: 1.9rem;
+  line-height: 1.1;
+  text-align: center;
+  color: var(--tinta);
+}
+
+.lightbox__btn {
+  position: fixed;
+  display: grid;
+  place-items: center;
+  width: 50px;
+  height: 50px;
+  padding: 0 0 4px;
+  border: 0;
+  border-radius: 50%;
+  font-size: 2rem;
+  line-height: 1;
+  color: var(--tinta);
+  background: rgba(255, 253, 246, .92);
+  cursor: pointer;
+  transition: transform .2s, background .2s;
+}
+.lightbox__btn:hover { transform: scale(1.08); background: var(--sol); }
+.lightbox__fechar { top: 16px; right: 16px; font-size: 1.3rem; padding: 0; }
+.lightbox__nav { top: 50%; margin-top: -25px; }
+.lightbox__nav--ant { left: 20px; }
+.lightbox__nav--prox { right: 20px; }
+.lightbox__contador {
+  position: fixed;
+  bottom: 14px;
+  left: 0;
+  right: 0;
+  margin: 0;
+  text-align: center;
+  font-family: var(--f-mao);
+  font-size: 1.4rem;
+  color: rgba(255, 255, 255, .8);
+}
+
+/* =========================================================
+   CELULAR
+   ========================================================= */
+@media (max-width: 820px) {
+  .hero { padding-top: 56px; }
+  .hero__conteudo { grid-template-columns: 1fr; gap: 44px; text-align: center; }
+  .hero__sub { margin-left: auto; margin-right: auto; }
+  .hero__sol { width: 140px; height: 140px; top: 3%; right: 4%; }
+}
+
+@media (max-width: 760px) {
+  .bilhete { padding: 34px 20px 26px 50px; font-size: 1.45rem; line-height: 32px;
+    background-image:
+      linear-gradient(90deg, transparent 34px, #f2b5c3 34px, #f2b5c3 36px, transparent 36px),
+      repeating-linear-gradient(180deg, transparent 0 31px, var(--papel-linha) 31px 32px);
+    background-position: 0 0, 0 34px; }
+  .bilhete p { margin-bottom: 32px; }
+  .bilhete__tartaruga { width: 50px; height: 50px; }
+
+  .titulo-sec { margin-bottom: 40px; }
+  .entrada { grid-template-columns: 1fr; row-gap: 22px; padding: 26px 0 30px 46px; }
+  .polaroid-wrap,
+  .entrada:nth-of-type(even) .polaroid-wrap { order: 0; justify-self: start; max-width: 300px; }
+  .entrada__nota,
+  .entrada:nth-of-type(even) .entrada__nota { order: 1; justify-self: start; text-align: left; }
+  .barquinho { width: 40px; }
+
+  .lightbox__nav { top: auto; bottom: 12px; margin-top: 0; }
+  .lightbox__nav--ant { left: 24px; }
+  .lightbox__nav--prox { right: 24px; }
+  .lightbox__contador { bottom: 24px; }
+  .lightbox__polaroid img { max-height: calc(100dvh - 200px); }
+}
+
+/* Quem prefere menos movimento */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition-duration: .01ms !important; }
+  .bolhas, .tartaruga-nadando { display: none; }
+  .js .revelar { opacity: 1; transform: none; }
+}
